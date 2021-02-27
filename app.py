@@ -48,6 +48,7 @@ early_birds_items = {
 }
 
 early_birds_menu = Menu("Early Birds", early_birds_items, 1500, 1800)
+# print(early_birds_menu.calculate_bill(["salumeria plate", "mushroom ravioli (vegan)"]))
 
 
 #create dinner menu: 
@@ -64,6 +65,7 @@ dinner_items = {
 dinner_menu = Menu("Dinner", dinner_items, 1700, 2300)
 
 
+
 #create kids menu: 
 kids_items = {
   'chicken nuggets': 6.50, 
@@ -74,5 +76,32 @@ kids_items = {
 kids_menu = Menu("Kids", kids_items, 1100, 2100)
 
 # print(kids_menu)
+
+
+# -----Create Franchise Class -----
+class Franchise:
+  def __init__(self, adress, menus): 
+    self.adress = adress
+    self.menus = menus
+
+  def __repr__(self): 
+    return "This store adress is: {}".format(self.adress)
+
+  def available_menus(self, time):
+    available_menu = []
+
+    for menu in self.menus:
+      if time >= menu.start_time and time <= menu.end_time:
+        available_menu.append(menu)
+
+    return available_menu
+
+
+
+menus = [brunch_menu, early_birds_menu, dinner_menu, kids_menu]
+
+flagship_store = Franchise("1232 West End Road", menus)
+new_installment = Franchise("12 East Mulberry Street", menus)
+# print(flagship_store.available_menus(1700))
 
 
