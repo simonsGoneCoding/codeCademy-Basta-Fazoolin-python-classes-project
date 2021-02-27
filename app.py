@@ -7,6 +7,17 @@ class Menu:
     self.start_time = start_time
     self.end_time = end_time
 
+  def __repr__(self):
+    return self.name + " menu is available from " + str(self.start_time) + " to " + str(self.end_time) + "."
+
+  def calculate_bill(self, purchased_items):
+    bill = 0
+    for purchased_item in purchased_items:
+      if purchased_item in self.items:
+        bill += self.items[purchased_item]
+
+    return bill
+
 
 #create brunch menu  
 brunch_items = {
@@ -22,6 +33,8 @@ brunch_items = {
 }
 
 brunch_menu = Menu("Brunch", brunch_items, 1100, 1600)
+# print(brunch_menu.calculate_bill(["pancakes", "home fries", "coffee"]))
+
 
 
 #create earlybirds menu: 
@@ -59,3 +72,7 @@ kids_items = {
 }
 
 kids_menu = Menu("Kids", kids_items, 1100, 2100)
+
+# print(kids_menu)
+
+
